@@ -1,0 +1,15 @@
+# 构建产物（pnpm run build 生成，npm publish 时随 files 打包）
+lib/
+
+# 本地发布快照：每次发包时对 lib 做的留档，不进版本库
+.shipped-lib-*/
+
+# 依赖与工具缓存
+node_modules/
+.cache/
+*.tsbuildinfo
+
+# 编辑器 / 系统噪声
+.DS_Store
+Thumbs.db
+*.log

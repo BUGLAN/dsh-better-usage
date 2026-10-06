@@ -1,0 +1,38 @@
+# 单包工作区配置。以下内容照搬自上游 monorepo 根 pnpm-workspace.yaml (tag v0.4.5)，
+# 未改动任何取值；只保留与 dsh-usage 相关的部分。
+packages:
+  - .
+
+# SDK peers 不自动安装，运行时由 DSH profile 树解析。
+autoInstallPeers: false
+
+# 上游打包缺陷（作者原注）：已发布的 SDK 包 import 了 manifest 里没有声明的运行时
+# 依赖，导致 vitest/node 解析失败。这里按源码钉住的版本把它们补回来；宿主 web bundle
+# 在运行时会提供自己的副本。
+packageExtensions:
+  '@deepseek-ai/dsh-client-store@0.2.0-rc.2':
+    dependencies:
+      zustand: '~4.4.7'
+      immer: '^10.1.1'
+  '@deepseek-ai/dsh-client-ui-primitives@0.2.0-rc.2':
+    dependencies:
+      anser: '^2.3.5'
+      clsx: '^2.0.0'
+      diff: '^9.0.0'
+      katex: '^0.16.47'
+      shiki: '^4.3.1'
+      '@shikijs/langs': '^4.3.1'
+      mdast-util-from-markdown: '^2.0.3'
+      mdast-util-gfm: '^3.1.0'
+      mdast-util-math: '^3.0.0'
+      micromark-core-commonmark: '^2.0.3'
+      micromark-extension-gfm: '^3.0.0'
+      micromark-extension-math: '^3.1.0'
+      micromark-factory-space: '^2.0.1'
+      micromark-util-character: '^2.1.1'
+      micromark-util-classify-character: '^2.0.1'
+      micromark-util-sanitize-uri: '^2.0.1'
+      micromark-util-symbol: '^2.0.1'
+      '@deepseek-ai/dsh-util-workspace-path': '0.2.0-rc.2'
+      '@deepseek-ai/dsh-util-code-language': '0.2.0-rc.2'
+      simple-icons: '16.31.0'
